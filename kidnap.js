@@ -61,9 +61,8 @@
 	 * kidnap takes the HTML Node Element as first argument and (optionally)
 	 * options as second argument.
 	 *
-	 * opts.addMagazines	an array of objects defining a magazine a letter can be torned out of.
-	 * opts.addMagazines	default true, wether the given magazines in opts should be added to
-	 * 						the defaults (true) or used instead (false)
+	 * opts.rotate          how many degrees a letter should rotate +-
+	 * opts.linebreakPeriod replace period with line-break? 
 	 *
 	 */
 	function kidnap(elem, opts) {
