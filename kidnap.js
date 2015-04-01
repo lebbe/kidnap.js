@@ -13,7 +13,7 @@
 			fontWeight: '300',
 			color: 'rgb(74, 62, 39)',
 			backgroundColor: 'rgb(115, 140, 162)',
-			fontSize: '72px',
+			fontSize: '120%',
 			padding: '4px',
 			margin: '2px'
 		}
@@ -25,7 +25,7 @@
 			fontWeight: '700',
 			color: 'rgb(96, 57, 90)',
 			backgroundColor: 'rgb(233, 233, 231)',
-			fontSize: '56px',
+			fontSize: '90%',
 			padding: '4px',
 			margin: '2px',
 			textTransform: 'uppercase'
@@ -38,7 +38,7 @@
 			fontWeight: '300',
 			color: 'rgb(226, 221, 215)',
 			backgroundColor: 'rgb(127, 160, 191)',
-			fontSize: '66px',
+			fontSize: '105%',
 			padding: '4px',
 			margin: '2px'
 		}
@@ -50,7 +50,7 @@
 			fontWeight: '400',
 			color: '#F5EAD5',
 			backgroundColor: '#EE4A3A',
-			fontSize: '65px',
+			fontSize: '100%',
 			padding: '4px',
 			margin: '2px',
 			textTransform: 'uppercase'
@@ -67,41 +67,48 @@
 	 *
 	 */
 	function kidnap(elem, opts) {
-        opts = opts || {};
-        opts.rotate = opts.rotate || 6;
-        
+		opts = opts || {};
+		opts.rotate = opts.rotate || 6;
+		opts.linebreakPeriod = opts.linebreakPeriod || false;
+		
 		var text = elem.textContent;
 		elem.textContent = '';
 
-        text.split(' ').forEach(function(word) {
-            var wordElement = document.createElement('span');
-            var spaceElemen = document.createElement('span');
-            wordElement.style.whiteSpace = 'nowrap';
-            spaceElemen.textContent = ' ';
-            spaceElemen.style.fontSize = '46px';
-            elem.appendChild(wordElement);
-            elem.appendChild(spaceElemen);
-            
-            word.split('').forEach(function(ch) {
-                 var el = document.createElement('span');
-                // Pick a random magazine the letter is cut out from
-                var magazine = magazines[parseInt(Math.random() * magazines.length)].style;
-    
-                for(field in magazine) {
-                    el.style[field] = magazine[field];
-                }
-    
-                // Rotate +- opts.rotate degrees
-                var test = 'rotate(' + parseInt((Math.random() * (opts.rotate * 2) + 1) - opts.rotate) + 'deg)';
-                console.log(test);
-                el.style.display = 'inline-block';
-                el.style.transform = test;
-    
-                el.textContent = ch;
-    
-                wordElement.appendChild(el);
-            });
-        });
+		text.split(' ').forEach(function(word) {
+			var wordElement = document.createElement('span');
+			var spaceElemen = document.createElement('span');
+			wordElement.style.whiteSpace = 'nowrap';
+			spaceElemen.textContent = ' ';
+			spaceElemen.style.fontSize = '100%';
+			elem.appendChild(wordElement);
+			elem.appendChild(spaceElemen);
+			
+			word.split('').forEach(function(ch) {
+				 var el = document.createElement('span');
+
+				 if(opts.linebreakPeriod && ch === '.') {
+				 	wordElement.appendChild(document.createElement('br'));
+				 	return;
+				 }
+
+				// Pick a random magazine the letter is cut out from
+				var magazine = magazines[parseInt(Math.random() * magazines.length)].style;
+	
+				for(field in magazine) {
+					el.style[field] = magazine[field];
+				}
+	
+				// Rotate +- opts.rotate degrees
+				var test = 'rotate(' + parseInt((Math.random() * (opts.rotate * 2) + 1) - opts.rotate) + 'deg)';
+				console.log(test);
+				el.style.display = 'inline-block';
+				el.style.transform = test;
+	
+				el.textContent = ch;
+	
+				wordElement.appendChild(el);
+			});
+		});
 
 	};
 
