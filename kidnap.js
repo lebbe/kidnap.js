@@ -85,9 +85,12 @@
 			word.split('').forEach(function(ch) {
 				 var el = document.createElement('span');
 
-				 if(opts.linebreakPeriod && ch === '.') {
-				 	wordElement.appendChild(document.createElement('br'));
-				 	return;
+				 if(ch === '.') {
+				 	if(opts.linebreakPeriod) {
+				 		wordElement.appendChild(document.createElement('br'));
+				 		return;
+				 	}
+				 	ch = ' ';
 				 }
 
 				// Pick a random magazine the letter is cut out from
