@@ -2,7 +2,7 @@
 The JavaScript plugin for kidnapping and blackmailing.
 
 
-See example in this jsfiddle: http://jsfiddle.net/lebbe/dfnu3fvc/
+See example here: http://lebbe.github.io/kidnap.js/
 
 Initialize kidnap on any elements with jQuery like this: $(selector).kidnap();
 
