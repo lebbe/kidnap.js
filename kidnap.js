@@ -61,10 +61,14 @@
 	 * kidnap takes the HTML Node Element as first argument and (optionally)
 	 * options as second argument.
 	 *
-	 * opts are not in use but will be sooooooon!
+	 * opts.addMagazines	an array of objects defining a magazine a letter can be torned out of.
+	 * opts.addMagazines	default true, wether the given magazines in opts should be added to
+	 * 						the defaults (true) or used instead (false)
 	 *
 	 */
 	function kidnap(elem, opts) {
+        opts = opts || {};
+        opts.rotate = opts.rotate || 6;
         
 		var text = elem.textContent;
 		elem.textContent = '';
@@ -87,8 +91,8 @@
                     el.style[field] = magazine[field];
                 }
     
-                // Rorate +- 3 degrees
-                var test = 'rotate(' + parseInt((Math.random() * 7) - 3) + 'deg)';
+                // Rotate +- opts.rotate degrees
+                var test = 'rotate(' + parseInt((Math.random() * (opts.rotate * 2) + 1) - opts.rotate) + 'deg)';
                 console.log(test);
                 el.style.display = 'inline-block';
                 el.style.transform = test;
