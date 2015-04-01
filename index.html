@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:700,300,600,400' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Roboto+Slab:400,700,100,300' rel='stylesheet' type='text/css'>
+
+<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+
+.paper, .titleNap {
+	font-size: 30px;
+}
+
+.paper {
+		border: 1px solid black;
+		padding: 20px;
+		background-color: #F9F9F9;
+}
+
+textarea {
+	width: 100%;
+	margin-top: 40px;
+}
+
+@media (min-width: 700px) {
+	.paper, .titleNap {
+		font-size: 60px;
+	}
+	.exampleContainer {
+		margin: 80px;
+	}
+}
+</style>
+</head>
+<body>
+
+<header class="navbar navbar-static-top bs-docs-nav" id="top" role="banner">
+  <div class="container">
+    <div class="navbar-header">
+      <a href="#" class="navbar-brand">kidnap.js</a>
+    </div>
+    <nav class="collapse navbar-collapse bs-navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li>
+          <a href="">github</a>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="http://twitter.com/lebbe">@lebbe</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+<div class="jumbotron">
+	<div class="container">
+    	<div class="titleNap">kidnap.js</div>
+    	<h2 class="tagline">for all your online shady GUI business</h2>
+	</div>
+</div>
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-8 col-xs-12">
+			kidnap.js is a JavaScript plugin for converting your dull ordinary text into a badass letter of blackmail. Each letter looks like it is cut out from a magazine or newspaper, and glued on a piece of paper.
+		</div>
+	</div>
+</div>
+<div class="container exampleContainer">
+	<h2 class="paperhead">Example</h2>
+	<div id="example1" class="paper">We have kidnapped your dog. Pay up $100 or we will feed him cat-food.</div>
+</div>
+
+
+<div class="container exampleContainer">
+	<h2 class="paperhead">Live example</h2>
+	<textarea>Try your own text here</textarea>
+	<div id="example2" class="paper">Try your own text here</div>
+</div>
+
+<script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+<!--<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>-->
+<script src="kidnap.js"></script>
+<script>
+	$('.titleNap').kidnap();
+
+	$('#example1').kidnap({
+		linebreakPeriod: true
+	});
+
+	$('#example2').kidnap({
+		linebreakPeriod: true
+	});
+
+	$('textarea').on('keyup', function() {
+		$('#example2').text(this.value).kidnap({
+			linebreakPeriod: true
+		});
+	}).on('focus', function() {
+		$(this).select();
+	});
+</script>
+</body>
+</html>
